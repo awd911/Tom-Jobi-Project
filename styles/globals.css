@@ -33,3 +33,7 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+.input-group,input-group-append,btn {
+  display: inline-block;
+}
