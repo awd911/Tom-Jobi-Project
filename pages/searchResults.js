@@ -1,5 +1,5 @@
 import React from "react";
-// import styles from '../styles/searchResults.module.css'
+//import styles from '../styles/globals.css'
 import Link from "next/link"
 import { useRouter } from "next/router";
 import { useState,useEffect } from "react";
@@ -24,16 +24,16 @@ export default function searchResults(){
     },[])
 
     return(
-        <div className={styles.container}>
-            <h2 className={styles.title}>Search Results Page</h2>
-            <p className={styles.description}>
+        <div >
+            <h2>Search Results Page</h2>
+            <p>
             User input: {pageUrl}
             {/* {userSearch} */}
              {/* User input: {router.asPath} */}
             </p>
 
         <Link href="/" >
-          <a className={styles.card}>
+          <a>
           <h2>Home &rarr;</h2>
           </a>
         </Link>

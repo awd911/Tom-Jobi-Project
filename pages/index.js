@@ -5,8 +5,8 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import searchResults from "pages/searchResults";
 import { Outlet } from 'react-router-dom';
 import Link from "next/link"
-// import styles from '../styles/Home.module.css'
-// import searchScripts from './scripts/searchScripts'
+//mport styles from '../styles/globals.css'
+
 import {functionName} from '@components/searchScripts.js'
 import {search} from '@components/searchScripts.js'
 import Footer from '@components/Footer'
@@ -28,18 +28,18 @@ export default function Home({ heading, details }) {
   const router = useRouter();
   const [searchText, setsearchText] = useState("");
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title id="title">{heading}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-    <main className={styles.main}>
-      <h2 className={styles.title} id="heading">
+    <main >
+      <h2 id="heading">
         {heading}
       </h2>
 
-      <div className={styles.grid}>
+      <div>
 
     <form action="/searchResults" method="GET">
         <input type="text" id="keyword" name="keyword" placeholder="Search..."></input>
