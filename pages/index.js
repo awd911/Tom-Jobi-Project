@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import searchResults from "pages/searchResults";
 import { Outlet } from 'react-router-dom';
 import Link from "next/link"
-import styles from '../styles/Home.module.css'
+// import styles from '../styles/Home.module.css'
 // import searchScripts from './scripts/searchScripts'
 import {functionName} from '@components/searchScripts.js'
 import {search} from '@components/searchScripts.js'
