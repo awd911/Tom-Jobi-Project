@@ -1,39 +1,58 @@
 import Head from 'next/head'
 import Header from '@components/Header'
-import searchScripts from './/searchScripts'
-import Script from 'next/script'
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import searchResults from "pages/searchResults";
+import { Outlet } from 'react-router-dom';
+import Link from "next/link"
+import styles from '../styles/Home.module.css'
+// import searchScripts from './scripts/searchScripts'
+import {functionName} from '@components/searchScripts.js'
+import {search} from '@components/searchScripts.js'
 import Footer from '@components/Footer'
+import {handleSubmit} from 'pages/searchResults.js'
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-export default function Home() {
+export async function getStaticProps() {
+  return {
+    props: {
+      heading: 'Jobi Search Engine',
+      details: 'This response is static.',
+    },
+  };
+}
+
+export default function Home({ heading, details }) {
+
+  const router = useRouter();
+  const [searchText, setsearchText] = useState("");
   return (
-    <div className="container">
+    <div className={styles.container}>
       <Head>
-        {/* Links to external JS file for function calls */}
-        <script src='pages\searchScripts.js'></script>
-
-        {/* Links to external CSS file for styles */}
-        {/* <link rel="stylesheet" href="./styles/[INSERT STYLES FILE HERE]"></link> */}
-
-        <title>Next.js Starter!</title>
+        <title id="title">{heading}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+    <main className={styles.main}>
+      <h2 className={styles.title} id="heading">
+        {heading}
+      </h2>
 
-        <Header title="Jobi - Job Search Platform" />
-        <p className="description">
-          Type 'n Search!
-        </p>
+      <div className={styles.grid}>
 
-      <div className="input-group mb-3">
-        {/* <input type="text" id="searchField" placeholder="Search Here..." aria-label="Search Here..." aria-describedby="basic-addon2"></input> */}
-        <button className="btn btn-outline-secondary" id="searchBtn" type="button" >Search</button>
-        {/* <button className="btn btn-outline-secondary" id="searchBtn" type="button" onClick=functionName() >test</button> */}
-        
+    <form action="/searchResults" method="GET">
+        <input type="text" id="keyword" name="keyword" placeholder="Search..."></input>
+        <button type="submit" id="submit">Search</button>
+    </form>
+    <span className="details">{details}</span>
       </div>
-      </main>
+    </main>
+  </div>
+        
+    //     <button className="btn btn-outline-secondary" id="searchBtn" type="button" onClick={search} >Search</button>
+    //     {/* <Link to="/searchResults">Search Results</Link> */}
 
-      <Footer />
-    </div>
   )
+
 }
