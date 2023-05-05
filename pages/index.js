@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Header from '@components/Header'
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import searchResults from "pages/searchResults";
 import { Outlet } from 'react-router-dom';
 import Link from "next/link"
