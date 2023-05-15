@@ -47,11 +47,20 @@ export default function Home({ heading, details }) {
     <span className="details">{details}</span>
       </div>
     </main>
+    <Link href="/searchError" >
+          <a>
+          <h2>ErrorScreen &rarr;</h2>
+          </a>
+        </Link> 
+      <Link href="/jobDetails" >
+          <a>
+          <h2>Job Details &rarr;</h2>
+          </a>
+        </Link>
   </div>
         
     //     <button className="btn btn-outline-secondary" id="searchBtn" type="button" onClick={search} >Search</button>
     //     {/* <Link to="/searchResults">Search Results</Link> */}
 
   )
-
 }

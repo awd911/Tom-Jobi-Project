@@ -11,23 +11,22 @@ import getJobs from "firebase_setup/firebase"
 
 export default function searchResults(){
     
-    function Job(title,location){
-        this.title = title;
-        this.location = location;
-    }
-
+    
     const [info , setInfo] = useState([{Job}]);
     const jobsDB = [new Job];
     const [pageUrl,setPageURL] = useState();
     const totalDb =  getJobs();
-    //Promise.resolve(getTitles()).then(job=>{})
 
-    
-    
-    
     //creates the router to access the current URL
     const router = useRouter()
     
+    function Job(id, title, location) {
+        this.id = id;
+        this.title = title;
+        this.location = location;
+      }
+
+
     useEffect(()=>{
         Fetchdata();
         setPageURL(router.asPath);
@@ -40,19 +39,19 @@ export default function searchResults(){
             //Adds the jobs from the database to the jobsDB array of job objects
             
             jobs.forEach(element => {
-                console.log ("Element ,",element," info ,",info);
-                var currJob = new Job(element.title,element.location);
-                jobsDB.push(currJob);
+                //creates a job object from each job in the database
+                let currJob = new Job(element.id,element.title,element.location);
+                
+                // Pushes the Jobs into the Info Array of Job objects
+                //info.push(currJob);
                 setStateFunction(currJob);
-            })
-            //setInfo();
-            //console.log(" jobs : ",jobs)
-        })
-        jobsDB.shift();
-        
+                //setInfo(info);
 
+            })
+        })
+        info.shift();
         
-        console.log("FetchData reached, Search: ", searchParse(router.asPath) , " All Jobs, ",jobsDB, " INfo: ",info);
+        console.log("FetchData reached, Search: ", searchParse(router.asPath) , " Info: ",info);
 
      }
     
@@ -62,7 +61,8 @@ export default function searchResults(){
             title:props.title,
             location:props.location
         }];
-        setInfo(updateInfo);
+        info.push(props);
+        console.log("Updated Info:", info);
      }
 
      //Splits the query into the actual search terms
@@ -86,18 +86,40 @@ export default function searchResults(){
  			<h3>Job Details</h3>
             <p>
             User input: {pageUrl}<br />
-            
-
-
             </p>
 
- 		{/* {
-			jobsDB.map((data) => (
-			<Frame title={data.title}
-				location={data.location}
-                />
-			))
-		} */}
+            {/* <div>
+
+            {info.map(job => (
+                <div key={job.title}>
+                    <p>{job.title}</p>
+                    <p>{job.location}</p>
+                </div>
+            ))}
+            </div> */}
+
+            {/* {info.map((data)=>{
+                console.log("INFO: ",info,"ID,", (data.id), " Title, ",(data.id)," Location,",(data.id));
+                <p>{id}{title}{location}</p>
+            })} */}
+        
+        {
+            console.log(info['id'])
+        }
+
+ 		{
+			info.map((data) => (
+			// <Frame title={data.title} location={data.location}/>
+            //console.log("INFO: ",info," Total Data",data,"ID,", data['id'], " Title, ", data.id," Location,", data.id);
+            //id: data.id, title: data.title, location: data.location
+            <div>
+                <h5>Job</h5>
+            <p>{data.id}</p>
+            <p>{data.title}</p>
+            <p>{data.location}</p>
+            </div>
+             ))
+		}
 
         <Link href="/" >
           <a>
@@ -110,20 +132,17 @@ export default function searchResults(){
 )
 }
  // Define how each display entry will be structured
-//  const Frame = ({title , location}) => {
-//  	console.log(title + ":" + location);
-//  	return (
-//  		<center>
-//  			<div className="div">
+ const Frame = ({title , location}) => {
+ 	console.log(title + ":" + location);
+ 	return (
+ 		<center>
+ 			<div className="div">
 
-//  <p>Title : {title}</p>
-
+ <p>Title : {title}</p>
 				
-//  <p>Location : {location}</p>
+ <p>Location : {location}</p>
 
-			
-
-//  			</div>
-//  		</center>
-//  	);
-// }
+ 			</div>
+ 		</center>
+ 	);
+}
