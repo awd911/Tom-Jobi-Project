@@ -1,17 +1,13 @@
-import Link from "next/link";
-import * as React from "react";
+// Import Firestore database
+import * as firebase from "firebase/app"
+import { useState } from 'react';
 
+const Search = () => {
 
-export function search(){
-    // Checks if field is empty
-
-    console.log("Searchable REACHED");
-    
-    // location.href = "pages/searchResults";
+	const [info , setInfo] = useState([]);
+	console.log("REACHED");
+	
 }
 
 
-export function handleSubmit(e){
-    console.log ("HELLO?", e);
-	localStorage.setItem("Search",e);
-}
+export default Search;

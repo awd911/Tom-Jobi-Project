@@ -22,45 +22,32 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ heading, details }) {
+export default function searchError({ heading, details }) {
 
   const router = useRouter();
   const [searchText, setsearchText] = useState("");
   return (
     <div>
       <Head>
-        <title id="title">{heading}</title>
+        <title id="title">Error Handling Page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
     <main >
       <h2 id="heading">
-        {heading}
+        An Error Has Occured
       </h2>
-
+    <p>Error text</p>
       <div>
 
-    <form action="/searchResults" method="GET">
-        <input type="text" id="keyword" name="keyword" placeholder="Search..."></input>
-        <button type="submit" id="submit">Search</button>
-    </form>
-    <span className="details">{details}</span>
-      </div>
-    </main>
-    <Link href="/searchError" >
+      <Link href="/" >
           <a>
-          <h2>ErrorScreen &rarr;</h2>
-          </a>
-        </Link> 
-      <Link href="/jobDetails" >
-          <a>
-          <h2>Job Details &rarr;</h2>
+          <h2>Home &rarr;</h2>
           </a>
         </Link>
+      </div>
+    </main>
   </div>
-        
-    //     <button className="btn btn-outline-secondary" id="searchBtn" type="button" onClick={search} >Search</button>
-    //     {/* <Link to="/searchResults">Search Results</Link> */}
 
   )
 }

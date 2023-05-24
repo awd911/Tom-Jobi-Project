@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import searchResults from "pages/searchResults";
 import { Outlet } from 'react-router-dom';
 import Link from "next/link"
+
 //mport styles from '../styles/globals.css'
 
 import {functionName} from '@components/searchScripts.js'
@@ -22,45 +23,34 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ heading, details }) {
+export default function jobDetails({ id, heading, details }) {
 
   const router = useRouter();
   const [searchText, setsearchText] = useState("");
+  
   return (
     <div>
       <Head>
-        <title id="title">{heading}</title>
+        <title id="title">Job Details</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
     <main >
       <h2 id="heading">
-        {heading}
+        Details will be displayed here.
+        ID: 
       </h2>
-
+    <p>Wage,Hours,Location, etc...</p>
       <div>
 
-    <form action="/searchResults" method="GET">
-        <input type="text" id="keyword" name="keyword" placeholder="Search..."></input>
-        <button type="submit" id="submit">Search</button>
-    </form>
-    <span className="details">{details}</span>
-      </div>
-    </main>
-    <Link href="/searchError" >
+      <Link href="/" >
           <a>
-          <h2>ErrorScreen &rarr;</h2>
-          </a>
-        </Link> 
-      <Link href="/jobDetails" >
-          <a>
-          <h2>Job Details &rarr;</h2>
+          <h2>Home &rarr;</h2>
           </a>
         </Link>
+      </div>
+    </main>
   </div>
-        
-    //     <button className="btn btn-outline-secondary" id="searchBtn" type="button" onClick={search} >Search</button>
-    //     {/* <Link to="/searchResults">Search Results</Link> */}
 
   )
 }
